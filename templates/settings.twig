@@ -1,0 +1,71 @@
+{% import '_includes/forms' as forms %}
+{% includeCssResource 'purolator/settings.css' %}
+
+<div class="purolator-field-container">
+
+	{{ forms.textField({
+        label: 'development.key.label'|t,
+        id: 'developmentKey',
+        name: 'developmentKey',
+        value: settings.developmentKey,
+        errors: settings.getErrors('developmentKey')
+	}) }}
+
+    {{ forms.textField({
+		label: 'development.key.password.label'|t,
+		id: 'developmentKeyPassword',
+		name: 'developmentKeyPassword',
+		value: settings.developmentKeyPassword,
+		errors: settings.getErrors('developmentKeyPassword')
+	}) }}
+
+    {{ forms.textField({
+		label: 'development.courier.account.number.label'|t,
+		id: 'developmentCourierAccountNumber',
+		name: 'developmentCourierAccountNumber',
+		value: settings.developmentCourierAccountNumber,
+		errors: settings.getErrors('developmentCourierAccountNumber')
+	}) }}
+
+    {{ forms.textField({
+		label: 'production.key.label'|t,
+		id: 'productionKey',
+		name: 'productionKey',
+		value: settings.productionKey,
+		errors: settings.getErrors('productionKey')
+	}) }}
+
+    {{ forms.textField({
+		label: 'production.key.password.label'|t,
+		id: 'productionKeyPassword',
+		name: 'productionKeyPassword',
+		value: settings.productionKeyPassword,
+		errors: settings.getErrors('productionKeyPassword')
+	}) }}
+
+    {{ forms.textField({
+		label: 'courier.account.number.label'|t,
+		id: 'courierAccountNumber',
+		name: 'courierAccountNumber',
+		value: settings.courierAccountNumber,
+		errors: settings.getErrors('courierAccountNumber')
+	}) }}
+
+    {{ forms.lightswitchField({
+        label: 'test.mode.label'|t,
+        id: 'testMode',
+        name: 'testMode',
+        value: settings.testMode,
+        on: (settings.testMode is defined) ? settings.testMode : ""
+    }) }}
+
+    {{ forms.textField({
+		label: 'sender.postal.code.label'|t,
+		id: 'senderPostalCode',
+		name: 'senderPostalCode',
+		value: settings.senderPostalCode,
+        maxlength: 7,
+		errors: settings.getErrors('senderPostalCode')
+	}) }}
+
+</div>
