@@ -39,8 +39,8 @@ class Purolator_EstimateService extends BaseApplicationComponent
     function createPWSSOAPClient()
     {
         $location = craft()->purolator_settings->getSettings()->testMode ?
-                    "https://devwebservices.purolator.com/PWS/V1/Estimating/EstimatingService.asmx" :
-                    "https://webservices.purolator.com/PWS/V1/Estimating/EstimatingService.asmx";
+                    "https://devwebservices.purolator.com/EWS/V2/Estimating/EstimatingService.asmx" :
+                    "https://webservices.purolator.com/EWS/V2/Estimating/EstimatingService.asmx";
 
         $endpoint = craft()->purolator_settings->getSettings()->testMode ?
                     "https://devwebservices.purolator.com/EWS/V2/Estimating/EstimatingService.asmx?wsdl" :
