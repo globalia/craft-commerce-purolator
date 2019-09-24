@@ -42,15 +42,15 @@ class Purolator_EstimateService extends BaseApplicationComponent
                     "https://devwebservices.purolator.com/PWS/V1/Estimating/EstimatingService.asmx" :
                     "https://webservices.purolator.com/PWS/V1/Estimating/EstimatingService.asmx";
 
-        $wsdlFile = craft()->purolator_settings->getSettings()->testMode ?
-                    CRAFT_PLUGINS_PATH."purolator/services/wsdl/development/EstimatingService.wsdl" :
-                    CRAFT_PLUGINS_PATH."purolator/services/wsdl/production/EstimatingService.wsdl";
+        $endpoint = craft()->purolator_settings->getSettings()->testMode ?
+                    "https://devwebservices.purolator.com/EWS/V2/Estimating/EstimatingService.asmx?wsdl" :
+                    "https://webservices.purolator.com/EWS/V2/Estimating/EstimatingService.asmx?wsdl";
 
         /** Purpose : Creates a SOAP Client in Non-WSDL mode with the appropriate authentication and
           *           header information
         **/
         //Set the parameters for the Non-WSDL mode SOAP communication with your Development/Production credentials
-        $client = new \SoapClient($wsdlFile,
+        $client = new \SoapClient($endpoint,
                                   array	(
                                           'trace'		=>	true,
                                           'location'	=>	$location,
@@ -61,10 +61,10 @@ class Purolator_EstimateService extends BaseApplicationComponent
                                 );
 
         //Define the SOAP Envelope Headers
-        $headers[] = new \SoapHeader ( 'http://purolator.com/pws/datatypes/v1',
+        $headers[] = new \SoapHeader ( 'http://purolator.com/pws/datatypes/v2',
                                       'RequestContext',
                                       array (
-                                              'Version'           =>  '1.4',
+                                              'Version'           =>  '2.0',
                                               'Language'          =>  substr(craft()->locale->id, 0, 2),
                                               'GroupID'           =>  'xxx',
                                               'RequestReference'  =>  'Rating Example'
